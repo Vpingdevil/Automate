@@ -32,16 +32,20 @@ def remove_function(command):
 
 
 def open_app(service):
+    installed = False
     try:
         os.system("start " + service)
+        installed = True
 
     except Exception as e:
         print(e.__str__())
         os.system(service)
+        installed = True
     
-    except:
-        print("Unable to process command, try using different keywords")
-        confirm = input(f"Type yes to show web results for {command} or any other key to continue")
+    finally:
+        if not installed:
+            print("Unable to process command, try using different keywords")
+        confirm = input(f"Type yes to show web results for {command} or press any other key to continue")
         if confirm or confirm in ["yes", "yeah", "yup"]:
             os.system("start www.google.com/search?q="+encoder(service))
 
