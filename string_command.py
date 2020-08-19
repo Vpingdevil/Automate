@@ -9,8 +9,7 @@ from urllib.parse import quote as encoder
 helping_words = ['please', 'but', 'sorry', "for", "me"]
 
 # words for the command such as open, close, new file, new tab
-functional_words = ['open', 'pause', 'resume', 'start', 'execute']
-# ^initially these are words to open the file
+functional_words = ['open', 'start', 'execute']
 # custom apps: which can be opened with start command
 custom_apps = ["chrome", "firefox", "atom", "pycharm", "notepad"]
 
@@ -40,7 +39,7 @@ def open_app(service):
         print(e.__str__())
         os.system(service)
     
-    finally:
+    except:
         print("Unable to process command, try using different keywords")
         confirm = input(f"Type yes to show web results for {command} or any other key to continue")
         if confirm or confirm in ["yes", "yeah", "yup"]:
