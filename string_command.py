@@ -1,6 +1,7 @@
 # coding: utf-8
 import os
 import re
+from urllib.parse import quote as encoder
 
 
 # create a list with all helping words
@@ -41,10 +42,9 @@ def open_app(service):
     
     finally:
         print("Unable to process command, try using different keywords")
-        confirm = input("Type yes to show web results or any other key to continue")
-        if any(confirm, confirm=="yes", confirm=="yeah"):
-            os.system("start www.google.co.in?")
-
+        confirm = input(f"Type yes to show web results for {command} or any other key to continue")
+        if confirm or confirm in ["yes", "yeah", "yup"]:
+            os.system("start www.google.com/search?q="+encoder(service))
 
 
 def process(command):
